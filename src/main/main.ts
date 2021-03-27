@@ -4,11 +4,12 @@ import * as path from "path";
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
+    height: 1600,
+    width: 1800,
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    width: 800,
   });
 
   // and load the index.html of the app.

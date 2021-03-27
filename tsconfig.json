@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "downlevelIteration": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "types": ["node"],
     "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
+    "allowJs": true,
+    "allowUnreachableCode": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "baseUrl": "./src/renderer",
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": ["node_modules", "dist", "asset_sources"],
+  "compileOnSave": false
 }
