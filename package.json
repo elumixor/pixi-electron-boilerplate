@@ -4,15 +4,13 @@
   "description": "",
   "scripts": {
     "build-main": "tsc --sourceMap -p main.tsconfig.json",
-    "build-renderer": "webpack",
-
     "watch-main": "tsc --watch --sourceMap -p main.tsconfig.json",
+    "build-renderer": "webpack",
     "watch-renderer": "webpack --watch",
-
-    "build": "npm run build-main && npm run build-renderer",
-    "watch": "npm run watch-main || npm run watch-renderer",
+    "build": "concurrently --kill-others-on-fail \"npm run build-main\" \"npm run build-renderer\"",
+    "watch": "concurrently -k \"npm run watch-main\" \"npm run watch-renderer\"",
     "electron": "electron ./dist/main.js",
-    "start": "npm run build && npm run electron || npm run watch",
+    "start": "npm run build-main && concurrently -k \"npm run watch-main\" \"npm run watch-renderer\" \"npm run electron\"",
     "lint": "eslint -c .eslintrc --ext .ts ./src"
   },
   "repository": "https://github.com/elumixor/plans",
@@ -22,6 +20,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
+    "concurrently": "^6.0.0",
     "electron": "^9.4.0",
     "eslint": "^7.3.1",
     "ts-loader": "^8.0.18",
