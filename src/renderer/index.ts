@@ -4,18 +4,22 @@
 // nodeIntegration is set to true in webPreferences.
 // Use preload.js to selectively enable features
 // needed in the renderer process.
-import * as PIXI from "pixi.js"
+import * as PIXI from "pixi.js";
 
 const app = new PIXI.Application({
     width: 640,
     height: 320,
     autoDensity: true,
-})
+});
 
 document.body.appendChild(app.view);
 
-//document.body.style.margin = "0";
-//document.body.style.padding = "0";
+for (const side of ["left", "top", "right", "bottom"]) {
+    const resizeDiv = document.createElement("div");
+    resizeDiv.classList.add("resize-div", side);
+    console.log(resizeDiv);
+    document.body.appendChild(resizeDiv);
+}
 
 function resize() {
     app.view.height = innerHeight;
@@ -23,7 +27,7 @@ function resize() {
     app.renderer.resize(innerWidth, innerHeight);
 }
 
-addEventListener("resize", resize)
-addEventListener("load", resize)
+addEventListener("resize", resize);
+addEventListener("load", resize);
 
 resize();
